@@ -1,0 +1,18 @@
+{
+  "recorded_on": "2026-10-20",
+  "publisher": "Swissgrid",
+  "source_page": "https://www.swissgrid.ch/en/home/customers/topics/energy-data-ch.html",
+  "notes": "Exact local workbook bytes at checkpoint; historical release versions are unverified. The 2023 workbook was downloaded during this session; 2024 was already present.",
+  "files": [
+    {
+      "path": "data/raw/EnergieUebersichtCH-2023.xlsx",
+      "bytes": 24237088,
+      "sha256": "b86e0fab5834726a28545bd91dfeba279d751ad34ce2bf33cae0edb52117f0e7"
+    },
+    {
+      "path": "data/raw/EnergieUebersichtCH-2024.xlsx",
+      "bytes": 24366485,
+      "sha256": "3944594e167e6a50762e7c30ad81b3209fc2e9b719a36a9321b477bbaccf8605"
+    }
+  ]
+}

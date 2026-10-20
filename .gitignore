@@ -1,5 +1,9 @@
 .venv/
 __pycache__/
 .ipynb_checkpoints/
-data/
+data/*
+!data/raw/
+data/raw/*
+!data/raw/EnergieUebersichtCH-2023.xlsx
+!data/raw/EnergieUebersichtCH-2024.xlsx
 .env
