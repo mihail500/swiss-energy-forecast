@@ -1,12 +1,20 @@
 # Swiss energy forecasting
 
-Learning project for forecasting hourly end-user electricity consumption from Swissgrid's quarter-hour energy workbooks. This checkpoint covers data preparation, baseline experiments, data-availability analysis, and a first fitted calendar model.
+Learning project for forecasting hourly end-user electricity consumption from Swissgrid's quarter-hour energy workbooks. This checkpoint covers data preparation, baseline experiments, data-availability analysis, a fitted calendar model, and an exploratory holiday indicator.
 
 ## Current status
 
-The first calendar model achieves **367.99 MWh MAE**, compared with **407.67 MWh** for the 52-week baseline, on the October-December 2024 development period. This is a 9.7% improvement under our assumed data-maturity policy. It is not a final out-of-sample or operational performance claim.
+The combined `notebooks/03_calendar_model.ipynb` contains the original experiments, holiday sensitivity, 2022 history expansion, and predefined October-December 2025 evaluation. The separate session-7 notebook is preserved as an interactive snapshot; use the combined notebook for further work.
 
-The next proposed experiment is a predefined calendar indicator for January 1 and December 25-26. **That feature has not been implemented.** Work stopped after error analysis, before changing the model.
+With expanded history, 2024 development MAE is 359.12 MWh for the holiday model versus 366.64 MWh for calendar-only. On the later 2025 evaluation, the **52-week baseline performs best overall**:
+
+| Method | MAE (MWh) | RMSE (MWh) | Mean error (MWh) |
+| --- | ---: | ---: | ---: |
+| 52-week baseline | 320.86 | 431.02 | -42.75 |
+| Calendar-only | 353.93 | 479.46 | -53.16 |
+| Calendar + holiday | 343.31 | 454.24 | -55.94 |
+
+The holiday feature improves on its matched calendar-only comparator by 3.00% MAE, mainly at Christmas, but does not beat the baseline overall. These results use an assumed maturity policy, not reconstructed historical data releases. Further changes motivated by this evaluation require another untouched period. See [session 7](docs/session_07.md).
 
 ## Files and how to run
 
@@ -15,12 +23,14 @@ The next proposed experiment is a predefined calendar indicator for January 1 an
 | `src/preparation.py` | Load quarter-hour data, prepare timestamps, aggregate hourly energy |
 | `notebooks/01_data_inspection.ipynb` | Inspect 2024 data and validate preparation |
 | `notebooks/02_baseline_forecast.ipynb` | Baselines, delay simulations, and calendar comparisons |
-| `notebooks/03_calendar_model.ipynb` | Independent fitted-model experiment and error diagnostics |
+| `notebooks/03_calendar_model.ipynb` | Combined development experiments and predefined 2025 evaluation |
+| `notebooks/03_calendar_model_session07.ipynb` | Preserved interactive session snapshot |
 | `notebooks/01_data_inspection_backup.ipynb` | Preserved earlier inspection snapshot |
 | `notebooks/01_data_inspection_session4.ipynb` | Preserved session-4 inspection snapshot |
-| `data/raw/` | Original 2023 and 2024 Swissgrid workbooks |
+| `data/raw/` | Original 2022-2025 Swissgrid workbooks |
 | `docs/session_04.md`, `docs/session_05.md` | Earlier session records |
-| `docs/session_06.md` | Latest model results, stopping point, and next steps |
+| `docs/session_06.md` | Original calendar-model results and diagnostics |
+| `docs/session_07.md` | Holiday experiment, training-date sensitivity, and next steps |
 | `docs/data_sources.json` | Workbook provenance, sizes, and SHA-256 checksums |
 
 Use Python 3.13 and the pinned dependencies in `requirements.txt`:
@@ -37,7 +47,7 @@ Select the project environment as the notebook kernel. Run each main notebook fr
 
 - Load the first four columns of Swissgrid's `Zeitreihen0h15` sheet, with energy in kWh.
 - Preserve source order while parsing local timestamps in Europe/Zurich, including repeated autumn clock-change timestamps.
-- Treat timestamps as interval ends, convert them to UTC, and subtract 15 minutes to obtain interval starts. The interval-end interpretation remains an assumption requiring independent confirmation.
+- For 2022-2024, assume interval-end timestamps and subtract 15 minutes after conversion to UTC. From 2025, the workbook explicitly documents interval starts; notebook 03 uses the UTC timestamp directly for that year. Earlier interval-end semantics still require independent confirmation.
 - Sum four quarter-hour observations per UTC hour; convert hourly kWh to MWh.
 - Check timestamp continuity, uniqueness, complete hourly observations, and preservation of source energy totals.
 - Verified 8,784 hourly observations in 2024 and 8,760 in 2023, including a continuous boundary between years. The 2024 end-user energy total is approximately 53.369 TWh.
@@ -96,12 +106,11 @@ The model's overall RMSE is 481.89 MWh and mean error is -73.35 MWh. Improvement
 
 ## Remaining work
 
-1. Test a predefined January 1 / December 25-26 indicator using the same mature training rows and unchanged benchmarks. The few training examples make this exploratory; do not claim these dates cover all Swiss regional holidays.
-2. Record results before adding further features. Avoid tuning rules solely to already inspected dates.
-3. Confirm timestamp semantics and historical release/version assumptions, or obtain a source with documented timely availability.
-4. Reserve a separate later period for final evaluation: 2024 has been inspected repeatedly and is development data.
-5. Produce a final reproducible comparison and report. Deployment and a production forecast service are not implemented.
+1. Preserve the recorded 2024 development and 2025 evaluation results before designing further changes.
+2. Confirm pre-2025 timestamp semantics and historical release/version assumptions, or obtain a source with documented timely availability.
+3. Define another untouched evaluation period before testing changes motivated by the 2025 results.
+4. Produce a reproducible final report. Deployment and a production forecast service are not implemented.
 
 ## Backup scope
 
-This Git checkpoint is intended to include source code, pinned dependencies, all saved notebooks and outputs (including inspection snapshots), documentation, and the two raw workbooks. Ignored local environments, Python caches, Jupyter checkpoint caches, and `.env` files are not part of the remote backup. The data manifest records exact workbook hashes so a restored checkout can be checked for integrity. Git cannot capture unsaved editor buffers.
+This Git checkpoint is intended to include source code, pinned dependencies, all saved notebooks and outputs (including inspection snapshots), documentation, and all four raw workbooks. Ignored local environments, Python caches, Jupyter checkpoint caches, and `.env` files are not part of the remote backup. The data manifest records exact workbook hashes so a restored checkout can be checked for integrity. Git cannot capture unsaved editor buffers.

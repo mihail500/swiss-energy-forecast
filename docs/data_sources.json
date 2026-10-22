@@ -1,18 +1,32 @@
 {
-  "recorded_on": "2026-10-20",
+  "recorded_on": "2026-10-22",
   "publisher": "Swissgrid",
   "source_page": "https://www.swissgrid.ch/en/home/customers/topics/energy-data-ch.html",
-  "notes": "Exact local workbook bytes at checkpoint; historical release versions are unverified. The 2023 workbook was downloaded during this session; 2024 was already present.",
+  "notes": "Exact workbook bytes at the session 7 checkpoint; historical release versions remain unverified. The 2025 workbook documents interval-start timestamps from 2025; earlier interval-end interpretation remains an assumption.",
   "files": [
+    {
+      "path": "data/raw/EnergieUebersichtCH-2022.xlsx",
+      "bytes": 24749247,
+      "sha256": "0922fbf418cbaae533d37cfb25f09b7afe637ebdbdb83328bb886c2857368267",
+      "timestamp_convention": "interval_end_assumed"
+    },
     {
       "path": "data/raw/EnergieUebersichtCH-2023.xlsx",
       "bytes": 24237088,
-      "sha256": "b86e0fab5834726a28545bd91dfeba279d751ad34ce2bf33cae0edb52117f0e7"
+      "sha256": "b86e0fab5834726a28545bd91dfeba279d751ad34ce2bf33cae0edb52117f0e7",
+      "timestamp_convention": "interval_end_assumed"
     },
     {
       "path": "data/raw/EnergieUebersichtCH-2024.xlsx",
       "bytes": 24366485,
-      "sha256": "3944594e167e6a50762e7c30ad81b3209fc2e9b719a36a9321b477bbaccf8605"
+      "sha256": "3944594e167e6a50762e7c30ad81b3209fc2e9b719a36a9321b477bbaccf8605",
+      "timestamp_convention": "interval_end_assumed"
+    },
+    {
+      "path": "data/raw/EnergieUebersichtCH-2025.xlsx",
+      "bytes": 26429715,
+      "sha256": "48ba9c57086fc0f00c96ba5cf7f449b0f51fd098451783bc4f3c36628a2944de",
+      "timestamp_convention": "interval_start_documented"
     }
   ]
 }

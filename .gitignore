@@ -7,3 +7,7 @@ data/raw/*
 !data/raw/EnergieUebersichtCH-2023.xlsx
 !data/raw/EnergieUebersichtCH-2024.xlsx
 .env
+
+!data/raw/EnergieUebersichtCH-2022.xlsx
+
+!data/raw/EnergieUebersichtCH-2025.xlsx
