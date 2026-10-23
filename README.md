@@ -81,4 +81,4 @@ Pre-2025 timestamp labels are interpreted as interval ends, supported by their e
 
 The later evaluation covers one autumn/Christmas quarter. Both periods have now been inspected, so model changes motivated by their results need another untouched period for independent evaluation. Deployment, weather inputs, and a real-time forecast service are outside this portfolio scope.
 
-For the preserved analytical history, see [earlier experiments](docs/experiment_history.md) and [session records](docs/session_08.md). The [completion checklist](docs/portfolio_plan.md) tracks the remaining release work; the [interview guide](docs/interview_guide.md) supports practising independent project ownership.
+For the analytical history, see [earlier experiments](docs/experiment_history.md). The [completion checklist](docs/portfolio_plan.md) tracks the remaining release work; the [interview guide](docs/interview_guide.md) supports practising independent project ownership.
