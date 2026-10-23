@@ -22,11 +22,18 @@ def load_quarter_hour_data(file_path):
     return df
 
 
-def prepare_quarter_hour_data(df):
+def prepare_quarter_hour_data(df, *, timestamp_convention="interval_end"):
     """Prepare timestamps while preserving the source row order.
 
-    Assumes source timestamps label interval ends.
+    timestamp_convention is "interval_end" (the default assumption for the
+    2022-2024 workbooks) or "interval_start" (documented from 2025).
+    Apply the offset in UTC so clock changes preserve elapsed intervals.
     """
+    if timestamp_convention not in ("interval_end", "interval_start"):
+        raise ValueError(
+            "timestamp_convention must be 'interval_end' or 'interval_start'"
+        )
+
     prepared = df.copy()
 
     prepared["timestamp"] = pd.to_datetime(
@@ -45,14 +52,22 @@ def prepare_quarter_hour_data(df):
         prepared["timestamp_local"].dt.tz_convert("UTC")
     )
 
-    prepared["interval_start_utc"] = (
-        prepared["timestamp_utc"] - pd.Timedelta(minutes=15)
-    )
+    offset = pd.Timedelta(minutes=15 if timestamp_convention == "interval_end" else 0)
+    prepared["interval_start_utc"] = prepared["timestamp_utc"] - offset
 
     return prepared
+
+
 def aggregate_hourly_energy(df):
     """Aggregate prepared quarter-hour energy into hourly MWh."""
     energy = df.set_index("interval_start_utc")["end_user_energy_kwh"]
+
+    if not isinstance(energy.index, pd.DatetimeIndex) or energy.index.tz is None:
+        raise ValueError("Interval starts must be timezone-aware timestamps.")
+    if not energy.index.is_unique or not energy.index.is_monotonic_increasing:
+        raise ValueError("Interval starts must be unique and ordered.")
+    if energy.index.hasnans or not energy.index.equals(energy.index.floor("15min")):
+        raise ValueError("Interval starts must lie on the quarter-hour grid.")
 
     hourly_groups = energy.resample(
         "1h",

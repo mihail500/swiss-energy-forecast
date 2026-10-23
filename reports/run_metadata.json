@@ -1,0 +1,70 @@
+{
+  "generated_at_utc": "2026-10-23T20:14:01.244560+00:00",
+  "evaluation": "2025-10-01 through 2025-12-31 by Swiss local date",
+  "evaluation_hours": 2209,
+  "evaluation_days": 92,
+  "training_hours": 27719,
+  "availability": "Assumed next-local-month start plus six months, from hourly interval ends; historical releases not reconstructed.",
+  "reference_metrics_passed": true,
+  "weekly_plot_selection": "First complete Monday-Sunday week: 2025-10-06 through 2025-10-12; descriptive, not independent validation.",
+  "python": "3.13.0",
+  "platform": "Windows",
+  "packages": {
+    "pandas": "3.0.6",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "nbclient": "0.11.0",
+    "nbformat": "5.11.1"
+  },
+  "notebook_source_sha256": "31e46361a1eed65e1fc03d65ebfb9ee456a228f00a49247b157abaecd3c73c7f",
+  "source_sha256": {
+    "src/__init__.py": "8d4ff6e274297a133e9085317e5ca5c62d37c31a02dda5fad98d70e333486c3e",
+    "src/availability.py": "34c3741d5af2b052a9bbb4e90d8f65212c29e08d4d9ef29dcd29175093e39979",
+    "src/evaluation.py": "c1beb76d51a2796e901c8d9c311512f0d0524ea74c57bc557cca9a2e90201e36",
+    "src/features.py": "d31d87dc351be909ee4e79b74cecbc656327e7de58b172f8fbfcc745efd1bdc4",
+    "src/preparation.py": "7499812d199a47bb2cca7e74935ea044d6164684b125e90e410f32dff1b16cf2",
+    "src/provenance.py": "d410b07d08b5375164097081f44e68dfd329caa44af7422b410aea5e77183911",
+    "src/reporting.py": "8ecd1c87956f3b60de86bf7d65d3e5d91c7a9e8273fcc0b7b114605d2f79f382",
+    "scripts/run_evaluation.py": "42dd4911ccba5d2a556b2366ff54c7ce589646e8cf088eee3fe41c94b9ddab38",
+    "docs/reference_metrics.json": "46c2406e32204776b8581db27b04213888bdd6915537c34b18819080f114dc71",
+    "requirements.txt": "968547ab96e0bddb8d88f69d93f0601537b70e91fa05973af6576c21d0b935a8"
+  },
+  "verified_inputs": [
+    {
+      "path": "data/raw/EnergieUebersichtCH-2022.xlsx",
+      "bytes": 24749247,
+      "sha256": "0922fbf418cbaae533d37cfb25f09b7afe637ebdbdb83328bb886c2857368267",
+      "timestamp_convention": "interval_end_assumed"
+    },
+    {
+      "path": "data/raw/EnergieUebersichtCH-2023.xlsx",
+      "bytes": 24237088,
+      "sha256": "b86e0fab5834726a28545bd91dfeba279d751ad34ce2bf33cae0edb52117f0e7",
+      "timestamp_convention": "interval_end_assumed"
+    },
+    {
+      "path": "data/raw/EnergieUebersichtCH-2024.xlsx",
+      "bytes": 24366485,
+      "sha256": "3944594e167e6a50762e7c30ad81b3209fc2e9b719a36a9321b477bbaccf8605",
+      "timestamp_convention": "interval_end_assumed"
+    },
+    {
+      "path": "data/raw/EnergieUebersichtCH-2025.xlsx",
+      "bytes": 26429715,
+      "sha256": "48ba9c57086fc0f00c96ba5cf7f449b0f51fd098451783bc4f3c36628a2944de",
+      "timestamp_convention": "interval_start_documented"
+    }
+  ],
+  "artifact_sha256": {
+    "daily_mae_2025.csv": "5514ca97358abbac733a8056b70103182feab5511391ed45ae96ebf34de65fa2",
+    "development_metrics_2024.csv": "395b5627c1d904ac01e71f66544f8145e27632cbf30c75f9c4bc950514ba9557",
+    "forecasts_2025.csv": "bb379e1f7f817da37ac8ecdaaeaa9214c5ca3cfbb6055b9d78dbf8581227b677",
+    "metrics_2025.csv": "814650bc4999402aa619aa240375d6813ded5d86c7e23ad2b53810bac9778907",
+    "monthly_metrics_2025.csv": "f1d4b9af42b34c216e6b557311289c059896e6fd2369db60195bdb775c719882",
+    "subset_metrics_2025.csv": "cf682321e1e9a019455b25cdf6d777a3a0188bc6b681d027eb4947c57081c3ae",
+    "figures/forecast_week_2025.png": "3fe554f8cb367f36ea44e37819d13cbf0fb9c0bd5146b517cf651f32a0bb9718",
+    "figures/model_comparison_2025.png": "b07ea2f1258f14de21223ad44dff35322d870f101d430f85e5daec8eff561e25",
+    "figures/monthly_mae_2025.png": "02ef47763d33f6821353368a514e7ca63beaa14a3842ad1ac10fc4684143577a"
+  }
+}

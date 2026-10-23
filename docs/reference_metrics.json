@@ -1,0 +1,15 @@
+{
+  "description": "Recorded scores before portfolio refactoring; regression checks, not new evaluation evidence. Columns are MAE, RMSE, mean error in MWh.",
+  "development_2024": {
+    "52_week_prediction_mwh": [407.67, 527.38, -98.45],
+    "calendar_model_mwh": [367.99, 481.89, -73.35],
+    "original_holiday_model": [362.46, 467.87, -75.25],
+    "expanded_calendar_model": [366.64, 478.15, -30.55],
+    "expanded_holiday_model": [359.12, 457.49, -33.27]
+  },
+  "evaluation_2025": {
+    "52_week_prediction_mwh": [320.86, 431.02, -42.75],
+    "calendar_prediction_mwh": [353.93, 479.46, -53.16],
+    "holiday_prediction_mwh": [343.31, 454.24, -55.94]
+  }
+}
